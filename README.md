@@ -6,6 +6,11 @@ Canonically Flatten Tree
 Pure PHP function to flatten an n-dimensional tree of scalars (represented as an array) into
 a single dimension list (also represented as an array).
 
+TODO
+----
+
+* Benchmark various flattening algorithms, including `\RecursiveArrayIterator`, etc.
+
 Requirements
 ------------
 
