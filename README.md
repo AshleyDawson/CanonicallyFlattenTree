@@ -1,5 +1,5 @@
-Flatten Tree
-============
+Canonically Flatten Tree
+========================
 
 [![Build Status](https://travis-ci.org/AshleyDawson/CanonicallyFlattenTree.svg?branch=master)](https://travis-ci.org/AshleyDawson/CanonicallyFlattenTree)
 
