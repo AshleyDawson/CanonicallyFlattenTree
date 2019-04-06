@@ -6,9 +6,9 @@ use function AshleyDawson\CanonicallyFlattenTree\canonically_flatten_scalar_tree
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class TestFlattenTree
+ * Class CanonicallyFlattenTreeTest
  *
- * @package AshleyDawson\FlattenTree\Test
+ * @package AshleyDawson\CanonicallyFlattenTree\Test
  */
 class CanonicallyFlattenTreeTest extends TestCase
 {
@@ -65,5 +65,38 @@ class CanonicallyFlattenTreeTest extends TestCase
         $this->expectExceptionMessage('Tree nodes must be exclusively scalars, object given of type stdClass');
 
         canonically_flatten_scalar_tree([5, 3, [2, [1, [[new \stdClass()]]]]]);
+    }
+
+    /**
+     * @test
+     */
+    public function it_produces_a_non_associative_array_from_an_associative_tree()
+    {
+        $this->assertEquals(
+            ['alpha', 'beta'],
+            canonically_flatten_scalar_tree(['y' => 'beta', ['x' => 'alpha']])
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_is_idempotent()
+    {
+        $this->assertEquals(
+            ['alpha', 'beta', 'gamma'],
+            canonically_flatten_scalar_tree(['alpha', 'beta', 'gamma'])
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_produces_a_canonicalised_list_from_an_already_flat_list()
+    {
+        $this->assertEquals(
+            ['alpha', 'beta', 'gamma'],
+            canonically_flatten_scalar_tree(['gamma', 'beta', 'alpha'])
+        );
     }
 }
