@@ -1,8 +1,8 @@
 Flatten Tree
 ============
 
-Pure PHP function to flatten an n-dimensional tree (represented as an array) into
-a single dimension list (represented as an array).
+Pure PHP function to flatten an n-dimensional tree of scalars (represented as an array) into
+a single dimension list (also represented as an array).
 
 Requirements
 ------------
@@ -45,7 +45,7 @@ $tree = [
     ],
 ];
 
-$list = \AshleyDawson\CanonicallyFlattenTree\canonically_flatten_tree($tree);
+$list = \AshleyDawson\CanonicallyFlattenTree\canonically_flatten_scalar_tree($tree);
 
 print_r($list);
 
