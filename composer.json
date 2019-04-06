@@ -2,6 +2,7 @@
     "name": "ashleydawson/canonically-flatten-tree",
     "license": "proprietary",
     "type": "library",
+    "minimum-stability": "stable",
     "description": "Pure function to flatten a tree (n-dimensional array) into a canonicalised list array",
     "autoload": {
         "files": ["lib/canonically_flatten_scalar_tree.php"]
