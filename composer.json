@@ -1,0 +1,20 @@
+{
+    "name": "ashleydawson/canonically-flatten-tree",
+    "license": "proprietary",
+    "type": "library",
+    "description": "Pure function to flatten a tree (n-dimensional array) into a canonicalised list array",
+    "autoload": {
+        "files": ["lib/canonically_flatten_tree.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AshleyDawson\\CanonicallyFlattenTree\\Test\\": "test/"
+        }
+    },
+    "require": {
+        "php": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.1"
+    }
+}
