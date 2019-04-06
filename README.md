@@ -1,6 +1,8 @@
 Flatten Tree
 ============
 
+[![Build Status](https://travis-ci.org/AshleyDawson/CanonicallyFlattenTree.svg?branch=master)](https://travis-ci.org/AshleyDawson/CanonicallyFlattenTree)
+
 Pure PHP function to flatten an n-dimensional tree of scalars (represented as an array) into
 a single dimension list (also represented as an array).
 
