@@ -10,6 +10,7 @@ TODO
 ----
 
 * Benchmark various flattening algorithms, including `\RecursiveArrayIterator`, etc.
+* Technically I think it's a nested set we're operating on (sort of), so in v2 I'd propose changing the terminology to suit
 
 Requirements
 ------------
@@ -84,4 +85,4 @@ Benchmark with [Blackfire](https://blackfire.io/):
 $ blackfire run php vendor/bin/phpunit 
 ```
 
-There is an [example benchmark](https://blackfire.io/profiles/3c6772a5-8c64-477d-9f8a-c80698ad9ff9/graph) available.
+There is an [example benchmark report](https://blackfire.io/profiles/3c6772a5-8c64-477d-9f8a-c80698ad9ff9/graph) available.
