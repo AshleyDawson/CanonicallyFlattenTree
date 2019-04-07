@@ -59,6 +59,17 @@ class CanonicallyFlattenTreeTest extends TestCase
     /**
      * @test
      */
+    public function it_produces_a_flattened_and_canonicalised_list_with_duplicates_preserved()
+    {
+        $this->assertEquals(
+            ['alpha', 'beta', 'beta', 'delta', 'gamma'],
+            canonically_flatten_scalar_tree(['gamma', 'beta', ['alpha', ['beta']], [[['delta']]]])
+        );
+    }
+
+    /**
+     * @test
+     */
     public function it_throws_invalid_argument_exception_if_tree_contains_non_scalars()
     {
         $this->expectException(\InvalidArgumentException::class);
