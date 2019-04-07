@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package AshleyDawson\CanonicallyFlattenTree\Test
  */
-class CanonicallyFlattenTreeTest extends TestCase
+class CanonicallyFlattenScalarTreeTest extends TestCase
 {
     /**
      * @test
@@ -73,7 +73,9 @@ class CanonicallyFlattenTreeTest extends TestCase
     public function it_throws_invalid_argument_exception_if_tree_contains_non_scalars()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Tree nodes must be exclusively scalars, object given of type stdClass');
+        $this->expectExceptionMessage(
+            'Tree nodes must be exclusively scalars, object given of type stdClass at level [5]'
+        );
 
         canonically_flatten_scalar_tree([5, 3, [2, [1, [[new \stdClass()]]]]]);
     }

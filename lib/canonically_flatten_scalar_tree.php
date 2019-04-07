@@ -13,18 +13,19 @@ namespace AshleyDawson\CanonicallyFlattenTree;
 function canonically_flatten_scalar_tree(array $tree): array
 {
     // Recursively reduce tree
-    $reduction = ($r = function (array $tree) use (&$r): array {
-        return array_reduce($tree, function (array $list, $node) use (&$r): array {
+    $reduction = ($r = function (array $tree, int $level = 1) use (&$r): array {
+        return array_reduce($tree, function (array $list, $node) use (&$r, &$level): array {
             // Must guarantee that all nodes are scalars to assure canonicalisation
             if (is_object($node)) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Tree nodes must be exclusively scalars, object given of type %s',
-                    get_class($node)
+                    'Tree nodes must be exclusively scalars, object given of type %s at level [%d]',
+                    get_class($node),
+                    $level
                 ));
             }
 
             // Compound
-            return array_merge($list, is_array($node) ? $r($node) : [$node]);
+            return array_merge($list, is_array($node) ? $r($node, ++ $level) : [$node]);
         }, []);
     })($tree);
 
