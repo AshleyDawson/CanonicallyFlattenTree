@@ -6,7 +6,7 @@ use function AshleyDawson\CanonicallyFlattenTree\canonically_flatten_scalar_tree
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class CanonicallyFlattenTreeTest
+ * Class CanonicallyFlattenScalarTreeTest
  *
  * @package AshleyDawson\CanonicallyFlattenTree\Test
  */
