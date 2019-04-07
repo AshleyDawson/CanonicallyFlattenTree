@@ -51,7 +51,7 @@ class CanonicallyFlattenTreeTest extends TestCase
     public function it_produces_a_flattened_and_canonicalised_list_from_unordered_tree_of_mixed_scalar_types()
     {
         $this->assertEquals(
-            [false, 'apple', 1, 3, 4.5],
+            [false, 1, 3, 4.5, 'apple'],
             canonically_flatten_scalar_tree(['apple', 3, [false, [1, [[4.5]]]]])
         );
     }

@@ -29,7 +29,7 @@ function canonically_flatten_scalar_tree(array $tree): array
     })($tree);
 
     // Canonicalise reduction
-    sort($reduction);
+    sort($reduction, SORT_NATURAL);
 
     return $reduction;
 }
