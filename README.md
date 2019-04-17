@@ -70,6 +70,23 @@ Array
 */
 ```
 
+Add type checking for scalars:
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+// This will produce an invalid argument exception stating the nature of the type failure and at what level
+// In this case we're asserting that all tree nodes must be of type "string"
+try {
+    \AshleyDawson\CanonicallyFlattenTree\canonically_flatten_scalar_tree(['alpha', [8]], 'string');
+} catch (\InvalidArgumentException $e) {
+    var_dump($e);
+}
+
+```
+
 Test & Benchmark
 ----------------
 
