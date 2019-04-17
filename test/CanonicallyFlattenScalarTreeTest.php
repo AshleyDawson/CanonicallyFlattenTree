@@ -112,4 +112,87 @@ class CanonicallyFlattenScalarTreeTest extends TestCase
             canonically_flatten_scalar_tree(['gamma', 'beta', 'alpha'])
         );
     }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_for_integer()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Tree nodes must all be of type string, integer given at level [2]'
+        );
+
+        canonically_flatten_scalar_tree(['gamma', 'beta', ['alpha', 8]], 'string');
+    }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_for_boolean()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Tree nodes must all be of type string, boolean given at level [2]'
+        );
+
+        canonically_flatten_scalar_tree(['gamma', 'beta', ['alpha', false]], 'string');
+    }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_for_real_numbers()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage(
+            'Tree nodes must all be of type string, double given at level [2]'
+        );
+
+        canonically_flatten_scalar_tree(['gamma', 'beta', ['alpha', 1.8]], 'string');
+    }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_using_string()
+    {
+        $this->assertEquals(
+            ['alpha', 'beta', 'gamma', 'lambda'],
+            canonically_flatten_scalar_tree(['gamma', 'beta', ['alpha', 'lambda']], 'string')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_using_integer()
+    {
+        $this->assertEquals(
+            [1, 2, 3, 4],
+            canonically_flatten_scalar_tree([2, 4, [1, 3]], 'integer')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_using_real_numbers()
+    {
+        $this->assertEquals(
+            [1.7, 2.3, 3.8, 4.1],
+            canonically_flatten_scalar_tree([2.3, 4.1, [1.7, 3.8]], 'float')
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function it_guarantees_result_as_a_list_of_specified_types_using_boolean()
+    {
+        $this->assertEquals(
+            [false, false, true],
+            canonically_flatten_scalar_tree([false, true, [false]], 'bool')
+        );
+    }
 }

@@ -8,13 +8,19 @@ namespace AshleyDawson\CanonicallyFlattenTree;
  * canonicalised by sorting
  *
  * @param array $tree
+ * @param string|null $type Assert tree must only contain this type, uses PHP's type checking method postfixes for is_null, is_int, is_string, etc.
  * @return array
  */
-function canonically_flatten_scalar_tree(array $tree): array
+function canonically_flatten_scalar_tree(array $tree, ?string $type = null): array
 {
+    // Normalise type checking method name
+    if (null !== $type) {
+        $type = preg_replace('/^is_.*$/i', '', $type);
+    }
+
     // Recursively reduce tree
-    $reduction = ($r = function (array $tree, int $level = 1) use (&$r): array {
-        return array_reduce($tree, function (array $list, $node) use (&$r, &$level): array {
+    $reduction = ($r = function (array $tree, int $level = 1) use (&$r, $type): array {
+        return array_reduce($tree, function (array $list, $node) use (&$r, &$level, $type): array {
             // Must guarantee that all nodes are scalars to assure canonicalisation
             if (is_object($node)) {
                 throw new \InvalidArgumentException(sprintf(
@@ -22,6 +28,18 @@ function canonically_flatten_scalar_tree(array $tree): array
                     get_class($node),
                     $level
                 ));
+            }
+
+            // Perform scalar type checking
+            if ((! is_array($node)) && $type) {
+                if (! call_user_func("is_{$type}", $node)) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Tree nodes must all be of type %s, %s given at level [%d]',
+                        $type,
+                        gettype($node),
+                        $level
+                    ));
+                }
             }
 
             // Compound
