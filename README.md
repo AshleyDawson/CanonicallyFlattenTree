@@ -15,7 +15,7 @@ TODO
 Requirements
 ------------
 
-This function requires PHP >= 7.3
+This function requires PHP >= 7.1
 
 Installation
 ------------
