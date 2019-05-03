@@ -32,7 +32,7 @@ function canonically_flatten_scalar_tree(array $tree, ?string $type = null): arr
 
             // Perform scalar type checking
             if ((! is_array($node)) && $type) {
-                if (! call_user_func("is_{$type}", $node)) {
+                if (! call_user_func("\\is_{$type}", $node)) {
                     throw new \InvalidArgumentException(sprintf(
                         'Tree nodes must all be of type %s, %s given at level [%d]',
                         $type,
